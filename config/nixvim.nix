@@ -29,7 +29,7 @@
       vim.keymap.set('n', '<C-p>', function() require('hover').hover_switch('previous') end, {desc = 'hover.nvim (previous source)'})
       vim.keymap.set('n', '<C-p>', function() require('hover').hover_switch('next') end, {desc = 'hover.nvim (next source)'})
       vim.keymap.set('n', '<leader>pf', require('telescope.builtin').find_files, {})
-      vim.keymap.set('n', '<leader>ps', function() require('telescope.builtin').grep_string({ search = vim.fn.input(\"Grep > \")}) end)
+      vim.keymap.set('n', '<leader>ps', function() require('telescope.builtin').grep_string({ search = vim.fn.input(\"Grep >\")}) end)
     ";
 
   # remappings
@@ -196,8 +196,14 @@
       enable = true;
       servers = {
         lua_ls.enable = true;
-        ruby_lsp.enable = true;
-        rubocop.enable = true;
+        ruby_lsp = {
+          enable = true;
+          cmd = [ "bundle" "exec" "ruby-lsp" ];
+        };
+        rubocop = {
+          enable = true;
+          cmd = [ "bundle" "exec" "rubocop" ];
+        };
         ts_ls.enable = true;
         clangd.enable = true;
         pyright.enable = true;
