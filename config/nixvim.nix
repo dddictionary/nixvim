@@ -196,7 +196,8 @@
       enable = true;
       servers = {
         lua_ls.enable = true;
-
+        ruby_lsp.enable = true;
+        rubocop.enable = true;
         ts_ls.enable = true;
         clangd.enable = true;
         pyright.enable = true;
