@@ -10,18 +10,18 @@
 
   extraConfigLua = "
       require('hover').setup {
-	init = function()
-	  require('hover.providers.lsp')
-	end,
-	preview_opts = {
-	  border = 'single'
-	},
-	preview_window = false,
-	title = true,
-	mouse_providers = {
-	  'LSP'
-	},
-	mouse_delay = 1000
+        init = function()
+          require('hover.providers.lsp')
+        end,
+        preview_opts = {
+          border = 'single'
+        },
+        preview_window = false,
+        title = true,
+        mouse_providers = {
+          'LSP'
+        },
+        mouse_delay = 1000
       }
 
       vim.keymap.set('n', 'K', require('hover').hover, {desc = 'hover.nvim'})
@@ -63,7 +63,7 @@
     relativenumber = true;
     shiftwidth = 4;
     undofile = true;
-    undodir = "./undo";
+    undodir = "/Users/abrarhabib/.local/share/nvim/undo/";  # Your actual home path
   };
 
   luaLoader.enable = true;
@@ -170,7 +170,7 @@
     lualine.enable = true;
     cmp-nvim-lsp.enable = true;
     telescope.enable = true;
-
+    
     autoclose = {
       enable = true;
       settings.keys = {
@@ -198,11 +198,8 @@
         lua_ls.enable = true;
         ruby_lsp = {
           enable = true;
-          cmd = [ "bundle" "exec" "ruby-lsp" ];
-        };
-        rubocop = {
-          enable = true;
-          cmd = [ "bundle" "exec" "rubocop" ];
+          package = null;
+          # cmd = [ "bundle" "exec" "ruby-lsp" ];
         };
         ts_ls.enable = true;
         clangd.enable = true;
