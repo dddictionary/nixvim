@@ -9,6 +9,7 @@
     pkgs.vimPlugins.vim-rails
   ];
 
+  withRuby = false;
   extraConfigLua = "
       require('hover').setup {
         init = function()
@@ -71,7 +72,13 @@
   plugins = {
     treesitter = {
       enable = true;
-      ensureInstalled = ["ruby" "html" "javascript" "json" "yaml"];
+      ensureInstalled = [
+        "ruby"
+        "html"
+        "javascript"
+        "json"
+        "yaml"
+      ];
     };
     conform-nvim = {
       enable = true;
@@ -81,7 +88,10 @@
         formatters_by_ft = {
           "nix" = ["alejandra"];
           rust = ["rustfmt"];
-          python = ["isort" "black"];
+          python = [
+            "isort"
+            "black"
+          ];
           c = ["clang_format"];
           cpp = ["clang_format"];
           javascript = {
@@ -178,7 +188,7 @@
       enable = true;
       extensions = {
         fzf-native.enable = true;
-        file_browser.enable = true;
+        file-browser.enable = true;
       };
     };
 
@@ -211,6 +221,10 @@
           enable = true;
           package = null;
           # cmd = [ "bundle" "exec" "ruby-lsp" ];
+        };
+        sorbet = {
+          enable = true;
+          package = null;
         };
         ts_ls.enable = true;
         clangd.enable = true;
