@@ -6,6 +6,7 @@
 }: {
   extraPlugins = [
     pkgs.vimPlugins.hover-nvim
+    pkgs.vimPlugins.vim-rails
   ];
 
   extraConfigLua = "
@@ -27,7 +28,7 @@
       vim.keymap.set('n', 'K', require('hover').hover, {desc = 'hover.nvim'})
       vim.keymap.set('n', 'gK', require('hover').hover_select, {desc = 'hover.nvim (select)'})
       vim.keymap.set('n', '<C-p>', function() require('hover').hover_switch('previous') end, {desc = 'hover.nvim (previous source)'})
-      vim.keymap.set('n', '<C-p>', function() require('hover').hover_switch('next') end, {desc = 'hover.nvim (next source)'})
+      vim.keymap.set('n', '<C-n>', function() require('hover').hover_switch('next') end, {desc = 'hover.nvim (next source)'})
       vim.keymap.set('n', '<leader>pf', require('telescope.builtin').find_files, {})
       vim.keymap.set('n', '<leader>ps', function() require('telescope.builtin').grep_string({ search = vim.fn.input(\"Grep >\")}) end)
     ";
@@ -63,11 +64,15 @@
     relativenumber = true;
     shiftwidth = 4;
     undofile = true;
-    undodir = "/Users/abrarhabib/.local/share/nvim/undo/";  # Your actual home path
+    undodir = "/Users/abrarhabib/.local/share/nvim/undo/"; # Your actual home path
   };
 
   luaLoader.enable = true;
   plugins = {
+    treesitter = {
+      enable = true;
+      ensureInstalled = ["ruby" "html" "javascript" "json" "yaml"];
+    };
     conform-nvim = {
       enable = true;
       autoLoad = true;
@@ -169,8 +174,14 @@
 
     lualine.enable = true;
     cmp-nvim-lsp.enable = true;
-    telescope.enable = true;
-    
+    telescope = {
+      enable = true;
+      extensions = {
+        fzf-native.enable = true;
+        file_browser.enable = true;
+      };
+    };
+
     autoclose = {
       enable = true;
       settings.keys = {
