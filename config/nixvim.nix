@@ -70,6 +70,9 @@
 
   luaLoader.enable = true;
   plugins = {
+    vim-be-good = {
+      enable = true;
+    };
     treesitter = {
       enable = true;
       ensureInstalled = [
@@ -101,43 +104,46 @@
           };
           "_" = ["trim_whitespace"]; # fallback for unknown filetypes
         };
-        format_on_save = ''
-          function(bufnr)
-            local slow_format_filetypes = slow_format_filetypes or {}
+        format_on_save = {
+          __raw = ''
+            function(bufnr)
+              local slow_format_filetypes = slow_format_filetypes or {}
 
-            if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
-              return
-            end
-
-            if slow_format_filetypes[vim.bo[bufnr].filetype] then
-              return
-            end
-
-            local function on_format(err)
-              if err and err:match("timeout$") then
-                slow_format_filetypes[vim.bo[bufnr].filetype] = true
+              if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
+                return
               end
+
+              if slow_format_filetypes[vim.bo[bufnr].filetype] then
+                return
+              end
+
+              local function on_format(err)
+                if err and err:match("timeout$") then
+                  slow_format_filetypes[vim.bo[bufnr].filetype] = true
+                end
+              end
+
+              return { timeout_ms = 200, lsp_fallback = true }, on_format
             end
+          '';
+        };
+        format_after_save = {
+          __raw = ''
+            function(bufnr)
+                local slow_format_filetypes = slow_format_filetypes or {}
 
-            return { timeout_ms = 200, lsp_fallback = true }, on_format
-          end
-        '';
-        format_after_save = ''
-          function(bufnr)
-            local slow_format_filetypes = slow_format_filetypes or {}
+                if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
+                  return
+                end
 
-            if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
-              return
+                if not slow_format_filetypes[vim.bo[bufnr].filetype] then
+                  return
+                end
+
+                return { lsp_fallback = true }
             end
-
-            if not slow_format_filetypes[vim.bo[bufnr].filetype] then
-              return
-            end
-
-            return { lsp_fallback = true }
-          end
-        '';
-
+          '';
+        };
         log_level = "warn";
         notify_on_error = false;
         notify_no_formatters = false;
