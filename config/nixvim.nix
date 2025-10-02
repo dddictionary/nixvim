@@ -40,7 +40,7 @@
   keymaps = [
     {
       key = "<leader>ff";
-      action = "<cmd>Ex<CR>";
+      action = "<cmd>Explore<CR>";
     }
     {
       key = "<leader><leader>";
@@ -58,6 +58,58 @@
         "v"
       ];
     }
+    {
+      key = "gl";
+      action = "<cmd>lua vim.diagnostic.open_float(0, {scope='line'})<CR>";
+      mode = [ "n" ];
+    }
+    # Harpoon: add current file to list
+    {
+      key = "<leader>a";
+      action.__raw = ''
+        function()
+          require('harpoon'):list():add()
+        end
+      '';
+      mode = [ "n" ];
+    }
+    # Harpoon: open UI to view/manage marks
+    {
+      key = "<C-e>";
+      action.__raw = ''
+        function()
+          local harpoon = require('harpoon')
+          harpoon.ui:toggle_quick_menu(harpoon:list())
+        end
+      '';
+      mode = [ "n" ];
+    }
+    # Harpoon: jump to slots 1..5 with leader+1..5
+    {
+      key = "<leader>1";
+      action.__raw = "function() require('harpoon'):list():select(1) end";
+      mode = [ "n" ];
+    }
+    {
+      key = "<leader>2";
+      action.__raw = "function() require('harpoon'):list():select(2) end";
+      mode = [ "n" ];
+    }
+    {
+      key = "<leader>3";
+      action.__raw = "function() require('harpoon'):list():select(3) end";
+      mode = [ "n" ];
+    }
+    {
+      key = "<leader>4";
+      action.__raw = "function() require('harpoon'):list():select(4) end";
+      mode = [ "n" ];
+    }
+    {
+      key = "<leader>5";
+      action.__raw = "function() require('harpoon'):list():select(5) end";
+      mode = [ "n" ];
+    }
   ];
 
   opts = {
@@ -65,7 +117,7 @@
     relativenumber = true;
     shiftwidth = 4;
     undofile = true;
-    undodir = "/Users/abrarhabib/.local/share/nvim/undo/"; # Your actual home path
+    undodir.__raw = "vim.fn.stdpath('data') .. '/undo//'";
   };
 
   luaLoader.enable = true;
@@ -75,13 +127,15 @@
     };
     treesitter = {
       enable = true;
-      ensureInstalled = [
-        "ruby"
-        "html"
-        "javascript"
-        "json"
-        "yaml"
-      ];
+      settings = {
+        ensure_installed = [
+          "ruby"
+          "html"
+          "javascript"
+          "json"
+          "yaml"
+        ];
+      };
     };
     conform-nvim = {
       enable = true;
@@ -178,9 +232,11 @@
     };
     auto-save.enable = true;
     web-devicons.enable = true;
+    which-key.enable = true;
     harpoon = {
       enable = true;
       enableTelescope = true;
+      autoLoad = true;
     };
     neocord.enable = true;
     rustaceanvim = {
@@ -221,6 +277,15 @@
 
     lsp = {
       enable = true;
+      keymaps = {
+        lspBuf = {
+          K = "hover";
+          gD = "references";
+          gd = "definition";
+          gi = "implementation";
+          gt = "type_definition";
+        };
+      };
       servers = {
         lua_ls.enable = true;
         ruby_lsp = {
