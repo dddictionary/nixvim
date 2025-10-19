@@ -60,8 +60,8 @@
     }
     {
       key = "gl";
-      action = "<cmd>lua vim.diagnostic.open_float(0, {scope='line'})<CR>";
-      mode = [ "n" ];
+      action = "<cmd>lua vim.diagnostic.open_float(0, {scope='line', border='rounded'})<CR>";
+      mode = ["n"];
     }
     # Harpoon: add current file to list
     {
@@ -71,7 +71,7 @@
           require('harpoon'):list():add()
         end
       '';
-      mode = [ "n" ];
+      mode = ["n"];
     }
     # Harpoon: open UI to view/manage marks
     {
@@ -82,33 +82,33 @@
           harpoon.ui:toggle_quick_menu(harpoon:list())
         end
       '';
-      mode = [ "n" ];
+      mode = ["n"];
     }
     # Harpoon: jump to slots 1..5 with leader+1..5
     {
       key = "<leader>1";
       action.__raw = "function() require('harpoon'):list():select(1) end";
-      mode = [ "n" ];
+      mode = ["n"];
     }
     {
       key = "<leader>2";
       action.__raw = "function() require('harpoon'):list():select(2) end";
-      mode = [ "n" ];
+      mode = ["n"];
     }
     {
       key = "<leader>3";
       action.__raw = "function() require('harpoon'):list():select(3) end";
-      mode = [ "n" ];
+      mode = ["n"];
     }
     {
       key = "<leader>4";
       action.__raw = "function() require('harpoon'):list():select(4) end";
-      mode = [ "n" ];
+      mode = ["n"];
     }
     {
       key = "<leader>5";
       action.__raw = "function() require('harpoon'):list():select(5) end";
-      mode = [ "n" ];
+      mode = ["n"];
     }
   ];
 
@@ -134,7 +134,9 @@
           "javascript"
           "json"
           "yaml"
+          "go"
         ];
+        highlight.enable = true;
       };
     };
     conform-nvim = {
@@ -177,7 +179,7 @@
                 end
               end
 
-              return { timeout_ms = 200, lsp_fallback = true }, on_format
+              return { timeout_ms = 500, lsp_fallback = true }, on_format
             end
           '';
         };
@@ -300,6 +302,9 @@
         ts_ls.enable = true;
         clangd.enable = true;
         pyright.enable = true;
+        gopls = {
+          enable = true;
+        };
       };
     };
     # cmp-clippy.enable = true;
@@ -340,6 +345,14 @@
     };
   };
 
-  colorschemes.base16.enable = true;
-  colorschemes.base16.colorscheme = "gruvbox-dark-hard";
+  # colorschemes.base16.enable = true;
+  # colorschemes.base16.colorscheme = "gruvbox-dark-hard";
+  colorschemes = {
+    kanagawa = {
+      enable = true;
+      settings = {
+        theme = "wave";
+      };
+    };
+  };
 }
