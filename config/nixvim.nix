@@ -14,5 +14,6 @@
     ./plugins/treesitter.nix
     ./plugins/editor.nix
     ./plugins/ui.nix
+    ./plugins/starter.nix
   ];
 }

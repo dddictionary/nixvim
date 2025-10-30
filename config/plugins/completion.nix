@@ -4,11 +4,28 @@
     luasnip.enable = true;
     cmp_luasnip.enable = true;
 
+    copilot-lua = {
+      enable = true;
+      settings = {
+        suggestion = {
+          enabled = false;
+        };
+        panel = {
+          enabled = false;
+        };
+      };
+    };
+
+    copilot-cmp = {
+      enable = true;
+    };
+
     cmp = {
       enable = true;
       autoEnableSources = true;
 
       settings.sources = [
+        {name = "copilot";}
         {name = "nvim_lsp";}
         {name = "nvim_lsp_signature_help";}
         {name = "path";}

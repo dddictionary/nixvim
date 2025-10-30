@@ -21,6 +21,15 @@
       };
     };
 
+    fzf-lua = {
+      enable = true;
+      settings = {
+        grep = {
+          rg_opts = "--column --line-number --no-heading --color=always --smart-case --max-columns=4096 --fixed-strings -e";
+        };
+      };
+    };
+
     harpoon = {
       enable = true;
       enableTelescope = true;
