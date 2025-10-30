@@ -110,6 +110,14 @@
       action.__raw = "function() require('harpoon'):list():select(5) end";
       mode = ["n"];
     }
+    {
+      key = "<leader>fp";
+      action = "<cmd> :let @+ = expand('%:p:.')<cr>";
+      mode = ["n"];
+      options = {
+        desc = "Get relative file path";
+      };
+    }
   ];
 
   opts = {
@@ -122,6 +130,9 @@
 
   luaLoader.enable = true;
   plugins = {
+    gitlinker = {
+      enable = true;
+    };
     vim-be-good = {
       enable = true;
     };
@@ -145,8 +156,9 @@
 
       settings = {
         formatters_by_ft = {
-          "nix" = ["alejandra"];
+          nix = ["alejandra"];
           rust = ["rustfmt"];
+          ruby = ["ruby-lsp"];
           python = [
             "isort"
             "black"
@@ -160,49 +172,13 @@
           };
           "_" = ["trim_whitespace"]; # fallback for unknown filetypes
         };
-        format_on_save = {
-          __raw = ''
-            function(bufnr)
-              local slow_format_filetypes = slow_format_filetypes or {}
+        format_on_save = ''
+          { timeout_ms = 300, lsp_fallback = true , quiet = true}
+        '';
 
-              if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
-                return
-              end
-
-              if slow_format_filetypes[vim.bo[bufnr].filetype] then
-                return
-              end
-
-              local function on_format(err)
-                if err and err:match("timeout$") then
-                  slow_format_filetypes[vim.bo[bufnr].filetype] = true
-                end
-              end
-
-              return { timeout_ms = 500, lsp_fallback = true }, on_format
-            end
-          '';
-        };
-        format_after_save = {
-          __raw = ''
-            function(bufnr)
-                local slow_format_filetypes = slow_format_filetypes or {}
-
-                if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
-                  return
-                end
-
-                if not slow_format_filetypes[vim.bo[bufnr].filetype] then
-                  return
-                end
-
-                return { lsp_fallback = true }
-            end
-          '';
-        };
         log_level = "warn";
-        notify_on_error = false;
-        notify_no_formatters = false;
+        notify_on_error = true;
+        notify_no_formatters = true;
 
         formatters = {
           alejandra = {
