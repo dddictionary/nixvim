@@ -118,5 +118,137 @@
         desc = "Copy relative file path";
       };
     }
+    # System clipboard yank/paste
+    {
+      key = "<leader>y";
+      action = "\"+y";
+      mode = ["n" "v"];
+      options = {
+        desc = "Yank to system clipboard";
+      };
+    }
+    {
+      key = "<leader>Y";
+      action = "\"+Y";
+      mode = ["n"];
+      options = {
+        desc = "Yank line to system clipboard";
+      };
+    }
+    {
+      key = "<leader>p";
+      action = "\"+p";
+      mode = ["n" "v"];
+      options = {
+        desc = "Paste from system clipboard";
+      };
+    }
+    {
+      key = "<leader>P";
+      action = "\"+P";
+      mode = ["n" "v"];
+      options = {
+        desc = "Paste before from system clipboard";
+      };
+    }
+    # Hover keymaps
+    {
+      key = "K";
+      action.__raw = "require('hover').hover";
+      mode = ["n"];
+      options = {
+        desc = "Show hover information";
+      };
+    }
+    {
+      key = "gK";
+      action.__raw = "require('hover').hover_select";
+      mode = ["n"];
+      options = {
+        desc = "Select hover provider";
+      };
+    }
+    {
+      key = "<C-p>";
+      action.__raw = "function() require('hover').hover_switch('previous') end";
+      mode = ["n"];
+      options = {
+        desc = "Previous hover source";
+      };
+    }
+    {
+      key = "<C-n>";
+      action.__raw = "function() require('hover').hover_switch('next') end";
+      mode = ["n"];
+      options = {
+        desc = "Next hover source";
+      };
+    }
+    # fzf-lua keymaps
+    {
+      key = "<leader>pf";
+      action.__raw = "function() require('fzf-lua').files({ hidden = true }) end";
+      mode = ["n"];
+      options = {
+        desc = "Find files (fzf)";
+      };
+    }
+    {
+      key = "<leader>ps";
+      action.__raw = "require('fzf-lua').live_grep";
+      mode = ["n"];
+      options = {
+        desc = "Live grep (fzf)";
+      };
+    }
+    # Git keymaps using fzf-lua
+    {
+      key = "<leader>gs";
+      action.__raw = "require('fzf-lua').git_status";
+      mode = ["n"];
+      options = {
+        desc = "Git status (fzf)";
+      };
+    }
+    {
+      key = "<leader>gc";
+      action.__raw = "require('fzf-lua').git_commits";
+      mode = ["n"];
+      options = {
+        desc = "Git commits (fzf)";
+      };
+    }
+    {
+      key = "<leader>gC";
+      action.__raw = "require('fzf-lua').git_bcommits";
+      mode = ["n"];
+      options = {
+        desc = "Git buffer commits (fzf)";
+      };
+    }
+    {
+      key = "<leader>gb";
+      action.__raw = "require('fzf-lua').git_branches";
+      mode = ["n"];
+      options = {
+        desc = "Git branches (fzf)";
+      };
+    }
+    {
+      key = "<leader>gS";
+      action.__raw = "require('fzf-lua').git_stash";
+      mode = ["n"];
+      options = {
+        desc = "Git stash (fzf)";
+      };
+    }
+    {
+      key = "<leader>gf";
+      action.__raw = "require('fzf-lua').git_files";
+      mode = ["n"];
+      options = {
+        desc = "Git files (fzf)";
+      };
+    }
   ];
 }

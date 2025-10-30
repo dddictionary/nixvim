@@ -27,6 +27,24 @@
         grep = {
           rg_opts = "--column --line-number --no-heading --color=always --smart-case --max-columns=4096 --fixed-strings -e";
         };
+        git = {
+          status = {
+            cmd = "git status -su";
+            previewer = "git_diff";
+          };
+          commits = {
+            cmd = "git log --color --pretty=format:'%C(yellow)%h%Creset %Cgreen(%><(12)%cr%><|(12))%Creset %s %C(blue)<%an>%Creset'";
+            preview = "git show --color {1}";
+          };
+          bcommits = {
+            cmd = "git log --color --pretty=format:'%C(yellow)%h%Creset %Cgreen(%><(12)%cr%><|(12))%Creset %s %C(blue)<%an>%Creset' {file}";
+            preview = "git show --color {1} -- {file}";
+          };
+          branches = {
+            cmd = "git branch --all --color";
+            preview = "git log --graph --pretty=format:'%C(yellow)%h%Creset %Cgreen(%><(12)%cr%><|(12))%Creset %s %C(blue)<%an>%Creset' {1}";
+          };
+        };
       };
     };
 
