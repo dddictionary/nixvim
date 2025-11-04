@@ -10,6 +10,13 @@
       };
     }
     {
+      key = "<leader>cf";
+      action = ":saveas ";
+      options = {
+        desc = "Copy current file to new name (Save As)";
+      };
+    }
+    {
       key = "<leader><leader>";
       action = "<c-^>";
       options = {
@@ -40,6 +47,48 @@
       mode = ["n"];
       options = {
         desc = "Show line diagnostics";
+      };
+    }
+    # Delete to black hole register (don't override paste buffer)
+    {
+      key = "d";
+      action = "\"_d";
+      mode = ["n" "v"];
+      options = {
+        desc = "Delete without yanking";
+      };
+    }
+    {
+      key = "D";
+      action = "\"_D";
+      mode = ["n"];
+      options = {
+        desc = "Delete to end of line without yanking";
+      };
+    }
+    {
+      key = "dd";
+      action = "\"_dd";
+      mode = ["n"];
+      options = {
+        desc = "Delete line without yanking";
+      };
+    }
+    # Leader+d to actually cut (delete and yank)
+    {
+      key = "<leader>d";
+      action = "d";
+      mode = ["n" "v"];
+      options = {
+        desc = "Cut (delete and yank)";
+      };
+    }
+    {
+      key = "<leader>D";
+      action = "D";
+      mode = ["n"];
+      options = {
+        desc = "Cut to end of line";
       };
     }
     # Harpoon: add current file to list
@@ -151,39 +200,6 @@
         desc = "Paste before from system clipboard";
       };
     }
-    # Hover keymaps
-    {
-      key = "K";
-      action.__raw = "require('hover').hover";
-      mode = ["n"];
-      options = {
-        desc = "Show hover information";
-      };
-    }
-    {
-      key = "gK";
-      action.__raw = "require('hover').hover_select";
-      mode = ["n"];
-      options = {
-        desc = "Select hover provider";
-      };
-    }
-    {
-      key = "<C-p>";
-      action.__raw = "function() require('hover').hover_switch('previous') end";
-      mode = ["n"];
-      options = {
-        desc = "Previous hover source";
-      };
-    }
-    {
-      key = "<C-n>";
-      action.__raw = "function() require('hover').hover_switch('next') end";
-      mode = ["n"];
-      options = {
-        desc = "Next hover source";
-      };
-    }
     # fzf-lua keymaps
     {
       key = "<leader>pf";
@@ -199,6 +215,47 @@
       mode = ["n"];
       options = {
         desc = "Live grep (fzf)";
+      };
+    }
+    # Gitsigns navigation and actions
+    {
+      key = "]c";
+      action.__raw = "function() require('gitsigns').next_hunk() end";
+      mode = ["n"];
+      options = {
+        desc = "Next git hunk";
+      };
+    }
+    {
+      key = "[c";
+      action.__raw = "function() require('gitsigns').prev_hunk() end";
+      mode = ["n"];
+      options = {
+        desc = "Previous git hunk";
+      };
+    }
+    {
+      key = "<leader>hs";
+      action.__raw = "require('gitsigns').stage_hunk";
+      mode = ["n" "v"];
+      options = {
+        desc = "Stage hunk";
+      };
+    }
+    {
+      key = "<leader>hp";
+      action.__raw = "require('gitsigns').preview_hunk";
+      mode = ["n"];
+      options = {
+        desc = "Preview hunk";
+      };
+    }
+    {
+      key = "<leader>hb";
+      action.__raw = "function() require('gitsigns').blame_line{full=true} end";
+      mode = ["n"];
+      options = {
+        desc = "Blame line";
       };
     }
     # Git keymaps using fzf-lua
