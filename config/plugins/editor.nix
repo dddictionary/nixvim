@@ -46,6 +46,10 @@
           };
         };
       };
+      luaConfig.post = ''
+        -- Use fzf-lua for vim.ui.select (used by overseer and others)
+        require('fzf-lua').register_ui_select()
+      '';
     };
 
     harpoon = {
@@ -115,6 +119,45 @@
     rustaceanvim = {
       enable = true;
       autoLoad = true;
+    };
+
+    # Enhanced quickfix window
+    quicker = {
+      enable = true;
+    };
+
+    # Task runner for running tests, builds, linters, etc
+    overseer = {
+      enable = true;
+      settings = {
+        templates = [];
+      };
+      luaConfig.post = ''
+        -- Register custom Ruby typecheck template
+        require("overseer").register_template({
+          name = "Ruby typecheck",
+          builder = function()
+            return {
+              cmd = { "sh" },
+              args = {
+                "-c",
+                "bin/typecheck 2>&1 | sed 's/\\x1b\\[[0-9;]*m//g' | grep '^[a-z].*:[0-9]*:'"
+              },
+              components = {
+                {
+                  "on_output_quickfix",
+                  open = true,
+                  errorformat = "%f:%l: %m",
+                },
+                "default"
+              },
+            }
+          end,
+          condition = {
+            filetype = { "ruby" },
+          },
+        })
+      '';
     };
   };
 }

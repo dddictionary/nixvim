@@ -217,6 +217,56 @@
         desc = "Live grep (fzf)";
       };
     }
+    # Quickfix navigation and management
+    {
+      key = "]q";
+      action = "<cmd>cnext<CR>";
+      mode = ["n"];
+      options = {
+        desc = "Next quickfix item";
+      };
+    }
+    {
+      key = "[q";
+      action = "<cmd>cprev<CR>";
+      mode = ["n"];
+      options = {
+        desc = "Previous quickfix item";
+      };
+    }
+    {
+      key = "<leader>qo";
+      action = "<cmd>copen<CR>";
+      mode = ["n"];
+      options = {
+        desc = "Open quickfix list";
+      };
+    }
+    {
+      key = "<leader>qc";
+      action = "<cmd>cclose<CR>";
+      mode = ["n"];
+      options = {
+        desc = "Close quickfix list";
+      };
+    }
+    # Overseer task runner
+    {
+      key = "<leader>tr";
+      action = "<cmd>OverseerRun<CR>";
+      mode = ["n"];
+      options = {
+        desc = "Run task (Overseer)";
+      };
+    }
+    {
+      key = "<leader>tt";
+      action = "<cmd>OverseerToggle<CR>";
+      mode = ["n"];
+      options = {
+        desc = "Toggle task list (Overseer)";
+      };
+    }
     # Gitsigns navigation and actions
     {
       key = "]c";
