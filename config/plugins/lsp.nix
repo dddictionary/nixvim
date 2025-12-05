@@ -16,7 +16,7 @@
         ruby_lsp = {
           enable = true;
           package = null;
-          # cmd = [ "bundle" "exec" "ruby-lsp" ];
+          cmd = [ "shadowenv" "exec" "--" "ruby-lsp" ];
         };
         sorbet = {
           enable = true;

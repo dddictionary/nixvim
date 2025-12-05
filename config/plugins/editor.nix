@@ -59,7 +59,21 @@
     };
 
     which-key.enable = true;
-    auto-save.enable = true;
+
+    auto-save = {
+      enable = true;
+      settings = {
+        condition = ''
+          function(buf)
+            return require("auto-save.utils.data").not_in(
+              vim.fn.getbufvar(buf, "&filetype"),
+              { "harpoon" }
+            )
+          end
+        '';
+      };
+    };
+
     vim-be-good.enable = true;
     gitlinker.enable = true;
 

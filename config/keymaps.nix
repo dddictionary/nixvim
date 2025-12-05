@@ -357,5 +357,95 @@
         desc = "Git files (fzf)";
       };
     }
+    # Rustaceanvim keymaps
+    {
+      key = "<leader>ca";
+      action = "<cmd>lua vim.lsp.buf.code_action()<CR>";
+      mode = ["n" "v"];
+      options = {
+        desc = "Code actions (browse LSP suggestions)";
+      };
+    }
+    {
+      key = "<leader>rr";
+      action.__raw = "function() vim.cmd.RustLsp('runnables') end";
+      mode = ["n"];
+      options = {
+        desc = "Rust runnables";
+      };
+    }
+    {
+      key = "<leader>rd";
+      action.__raw = "function() vim.cmd.RustLsp('debuggables') end";
+      mode = ["n"];
+      options = {
+        desc = "Rust debuggables";
+      };
+    }
+    {
+      key = "<leader>re";
+      action.__raw = "function() vim.cmd.RustLsp('explainError') end";
+      mode = ["n"];
+      options = {
+        desc = "Explain error under cursor";
+      };
+    }
+    {
+      key = "<leader>rm";
+      action.__raw = "function() vim.cmd.RustLsp('expandMacro') end";
+      mode = ["n"];
+      options = {
+        desc = "Expand macro";
+      };
+    }
+    {
+      key = "<leader>rc";
+      action.__raw = "function() vim.cmd.RustLsp('openCargo') end";
+      mode = ["n"];
+      options = {
+        desc = "Open Cargo.toml";
+      };
+    }
+    {
+      key = "<leader>rp";
+      action.__raw = "function() vim.cmd.RustLsp('parentModule') end";
+      mode = ["n"];
+      options = {
+        desc = "Go to parent module";
+      };
+    }
+    {
+      key = "<leader>rj";
+      action.__raw = "function() vim.cmd.RustLsp('joinLines') end";
+      mode = ["n" "v"];
+      options = {
+        desc = "Join lines (Rust-aware)";
+      };
+    }
+    {
+      key = "<leader>rh";
+      action.__raw = "function() vim.cmd.RustLsp{'hover', 'actions'} end";
+      mode = ["n"];
+      options = {
+        desc = "Hover with actions (Rust)";
+      };
+    }
+    {
+      key = "<leader>rw";
+      action.__raw = "function() vim.cmd.RustLsp('reloadWorkspace') end";
+      mode = ["n"];
+      options = {
+        desc = "Reload Cargo workspace";
+      };
+    }
+    # Config reload
+    {
+      key = "<leader>vr";
+      action = "<cmd>source $MYVIMRC<CR>";
+      mode = ["n"];
+      options = {
+        desc = "Reload nvim config";
+      };
+    }
   ];
 }
