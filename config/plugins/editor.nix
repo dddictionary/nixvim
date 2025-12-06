@@ -133,6 +133,27 @@
     rustaceanvim = {
       enable = true;
       autoLoad = true;
+      settings = {
+        tools = {
+          # Use project's rustfmt configuration
+          fmt = {
+            command = "cargo";
+            args = ["fmt" "--" "--emit=stdout"];
+          };
+        };
+        server = {
+          default_settings = {
+            rust-analyzer = {
+              rustfmt = {
+                # Use rustfmt from the project's cargo
+                enable = true;
+                # Let rust-analyzer use the project's rustfmt config
+                extraArgs = [];
+              };
+            };
+          };
+        };
+      };
     };
 
     # Enhanced quickfix window
