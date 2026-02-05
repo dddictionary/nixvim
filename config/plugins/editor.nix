@@ -194,5 +194,24 @@
         })
       '';
     };
+
+    # Markdown preview in browser
+    markdown-preview = {
+      enable = true;
+      settings = {
+        auto_start = false;
+        auto_close = true;
+        refresh_slow = false;
+        command_for_global = false;
+        open_to_the_world = false;
+        browser = "";
+        echo_preview_url = false;
+        preview_options = {
+          disable_sync_scroll = false;
+          disable_filename = false;
+        };
+        theme = "dark";
+      };
+    };
   };
 }
