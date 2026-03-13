@@ -8,7 +8,7 @@
     # Alpha-nvim: Popular, clean, has nice presets (startify, dashboard themes)
     alpha = {
       enable = true;
-      layout = [
+      settings.layout = [
         {
           type = "padding";
           val = 2;

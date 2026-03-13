@@ -199,16 +199,16 @@
     markdown-preview = {
       enable = true;
       settings = {
-        auto_start = false;
-        auto_close = true;
-        refresh_slow = false;
-        command_for_global = false;
-        open_to_the_world = false;
+        auto_start = 0;
+        auto_close = 1;
+        refresh_slow = 0;
+        command_for_global = 0;
+        open_to_the_world = 0;
         browser = "";
-        echo_preview_url = false;
+        echo_preview_url = 0;
         preview_options = {
-          disable_sync_scroll = false;
-          disable_filename = false;
+          disable_sync_scroll = 0;
+          disable_filename = 0;
         };
         theme = "dark";
       };
