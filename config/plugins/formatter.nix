@@ -55,7 +55,7 @@
             command = lib.getExe pkgs.prettierd;
           };
           prettier = {
-            command = lib.getExe pkgs.nodePackages.prettier;
+            command = lib.getExe pkgs.prettier;
           };
           trim_whitespace = {
             command = "${pkgs.coreutils}/bin/cat";
