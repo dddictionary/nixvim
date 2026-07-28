@@ -74,7 +74,6 @@
       };
     };
 
-    vim-be-good.enable = true;
     gitlinker.enable = true;
 
     gitsigns = {
