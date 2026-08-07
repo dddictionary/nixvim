@@ -438,6 +438,23 @@
         desc = "Reload Cargo workspace";
       };
     }
+    # Claude Code
+    {
+      key = "<leader>cc";
+      action = "<cmd>ClaudeCode<CR>";
+      mode = ["n"];
+      options = {
+        desc = "Toggle Claude Code";
+      };
+    }
+    {
+      key = "<leader>cs";
+      action = "<cmd>ClaudeCodeSend<CR>";
+      mode = ["v"];
+      options = {
+        desc = "Send selection to Claude Code";
+      };
+    }
     # Config reload
     {
       key = "<leader>vr";

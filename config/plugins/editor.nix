@@ -194,6 +194,13 @@
       '';
     };
 
+    # Claude Code IDE integration (buffers sync live, no manual :e needed)
+    claudecode.enable = true;
+    # nixvim auto-enables this as a dependency of claudecode, but it's an
+    # unrelated plugin (greggh/claude-code.nvim) that also defines a
+    # :ClaudeCode command, colliding with the one above.
+    claude-code.enable = false;
+
     # Markdown preview in browser
     markdown-preview = {
       enable = true;
@@ -213,4 +220,9 @@
       };
     };
   };
+
+  # claudecode.nvim auto-enables dependencies.claude-code, which would pull in
+  # nixpkgs' (unfree) claude-code package onto PATH. Skip that and let the
+  # plugin find the `claude` binary already provided by home-manager.
+  dependencies.claude-code.enable = false;
 }
