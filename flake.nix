@@ -35,7 +35,10 @@
         nixvimModule = {
           inherit system; # or alternatively, set `pkgs`
 
-          module = import ./config; # import the module directly
+          module = {
+            imports = [./config];
+            nixpkgs.source = inputs.nixpkgs;
+          };
           # You can use `extraSpecialArgs` to pass additional arguments to your module files
           extraSpecialArgs = {
             # inherit (inputs) foo;

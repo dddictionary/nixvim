@@ -455,6 +455,23 @@
         desc = "Send selection to Claude Code";
       };
     }
+    # Pi
+    {
+      key = "<leader>ai";
+      action = "<cmd>Pi<CR>";
+      mode = ["n"];
+      options = {
+        desc = "Send to Pi";
+      };
+    }
+    {
+      key = "<leader>ai";
+      action = "<cmd>Pi<CR>";
+      mode = ["v"];
+      options = {
+        desc = "Send selection to Pi";
+      };
+    }
     # Config reload
     {
       key = "<leader>vr";

@@ -195,7 +195,10 @@
     };
 
     # Claude Code IDE integration (buffers sync live, no manual :e needed)
-    claudecode.enable = true;
+    claudecode = {
+      enable = true;
+      settings.auto_start = false;
+    };
     # nixvim auto-enables this as a dependency of claudecode, but it's an
     # unrelated plugin (greggh/claude-code.nvim) that also defines a
     # :ClaudeCode command, colliding with the one above.
