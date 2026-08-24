@@ -1,4 +1,4 @@
-{
+{lib, ...}: {
   plugins = {
     telescope = {
       enable = true;
@@ -74,7 +74,15 @@
       };
     };
 
-    gitlinker.enable = true;
+    gitlinker = {
+      enable = true;
+      settings.callbacks."gitstream.shopify.io" = lib.nixvim.mkRaw ''
+        function(url_data)
+          url_data.host = "github.com"
+          return require("gitlinker.hosts").get_github_type_url(url_data)
+        end
+      '';
+    };
 
     gitsigns = {
       enable = true;
