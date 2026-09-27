@@ -28,12 +28,26 @@
         "aarch64-darwin"
       ];
 
-      perSystem = {system, ...}: let
+      perSystem = {
+        system,
+        lib,
+        ...
+      }: let
         nixvimLib = nixvim.lib.${system};
         nixvim' = nixvim.legacyPackages.${system};
 
+        # copilot-lua/copilot-cmp (config/plugins/completion.nix) depend on the
+        # unfree copilot-language-server package.
+        pkgs = import inputs.nixpkgs {
+          inherit system;
+          config.allowUnfreePredicate = pkg:
+            builtins.elem (lib.getName pkg) [
+              "copilot-language-server"
+            ];
+        };
+
         nixvimModule = {
-          inherit system; # or alternatively, set `pkgs`
+          inherit pkgs;
 
           module = {
             imports = [./config];
