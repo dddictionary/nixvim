@@ -1,9 +1,4 @@
-{pkgs, ...}: {
-  extraPackages = with pkgs; [
-    fortune
-    cowsay
-  ];
-
+{...}: {
   plugins = {
     # Alpha-nvim: Popular, clean, has nice presets (startify, dashboard themes)
     alpha = {
@@ -131,14 +126,6 @@
         {
           type = "padding";
           val = 2;
-        }
-        {
-          type = "text";
-          val.__raw = "vim.fn.systemlist('fortune | cowsay -f kitty')";
-          opts = {
-            position = "center";
-            hl = "Comment";
-          };
         }
       ];
     };
