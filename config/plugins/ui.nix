@@ -6,11 +6,14 @@
   };
 
   colorschemes = {
-    kanagawa = {
+    gruvbox = {
       enable = true;
-      settings = {
-        theme = "wave";
-      };
     };
+    # kanagawa = {
+    #   enable = true;
+    #   settings = {
+    #     theme = "wave";
+    #   };
+    # };
   };
 }
