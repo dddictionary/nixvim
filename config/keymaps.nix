@@ -482,4 +482,26 @@
       };
     }
   ];
+
+  # Markdown-only keymaps (buffer-local via ftplugin)
+  files."ftplugin/markdown.lua".keymaps = [
+    {
+      key = "<leader>mr";
+      action = "<cmd>RenderMarkdown toggle<CR>";
+      mode = ["n"];
+      options = {
+        buffer = true;
+        desc = "Toggle in-buffer Markdown rendering";
+      };
+    }
+    {
+      key = "<leader>mp";
+      action = "<cmd>MarkdownPreviewToggle<CR>";
+      mode = ["n"];
+      options = {
+        buffer = true;
+        desc = "Toggle browser Markdown preview";
+      };
+    }
+  ];
 }
