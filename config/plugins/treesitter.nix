@@ -12,6 +12,8 @@
         json
         yaml
         go
+        markdown
+        markdown_inline
       ];
 
       settings = {
